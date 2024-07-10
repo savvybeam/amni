@@ -1,0 +1,19 @@
+$(document).ready(function(){
+     $('#myForm').on("submit", function(event){
+           event.preventDefault();
+            $.ajax({
+               url:"loginScript.php",  
+                     method:"POST",  
+                     data:$('#myForm').serialize(),  
+                     beforeSend:function(){  
+                          $('#submit').val("Authenticating...");  
+                     },  
+                     success:function(data){  
+                          $('#myForm')[0].reset();  
+                          $('#feedback').html(data);
+                          $('#alert').fadeIn(1000).delay(3000).slideUp(200);
+                          $(window).location="index.php";                       
+                     }  
+            });
+        });
+});
